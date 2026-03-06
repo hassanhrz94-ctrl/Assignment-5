@@ -1,4 +1,14 @@
+const API_BASE = "https://phi-lab-server.vercel.app/api/v1/lab";
+const loginBtn = document.getElementById('login-btn');
+const loginPage = document.getElementById('login-page');
+const mainDashboard = document.getElementById('main-dashboard');
+const issuesGrid = document.getElementById('issues-grid');
+const issueCountEl = document.getElementById('issue-count');
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const tabs = document.querySelectorAll('.filter-tab');
 
+let allIssues = []
 
 
 
