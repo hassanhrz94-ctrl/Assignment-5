@@ -11,7 +11,6 @@ const tabs = document.querySelectorAll('.filter-tab');
 let allIssues = []
 
 
-
 // 1. Authentication Logic
 loginBtn.addEventListener('click', () => {
 const user = document.getElementById('username').value;
@@ -24,3 +23,15 @@ const user = document.getElementById('username').value;
  alert('Invalid credentials! Use admin / admin123');
  }
 });
+
+// 2. Fetch Data
+async function fetchIssues() {
+    try {
+        const response = await fetch(`${API_BASE}/issues`);
+        const data = await response.json();
+        allIssues = data.data; 
+        renderIssues(allIssues);
+    } catch (error) {
+        console.error("Error fetching issues:", error);
+    }
+}
