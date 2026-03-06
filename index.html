@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issues Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <div id="login-page" class="flex flex-col items-center justify-center min-h-screen p-4">
+        <div class="card w-full max-w-sm bg-base-100 shadow-xl p-8 border border-gray-200">
+            <div class="flex flex-col items-center mb-6 text-center">
+                <img src="assets/github-logo.png" alt="Logo" class="w-16 mb-4">
+                <h1 class="text-2xl font-bold">Sign In</h1>
+                <p class="text-sm text-gray-500">To GitHub Issues Tracker</p>
+            </div>
+            
+            <div class="form-control w-full mb-4">
+                <label class="label"><span class="label-text">Username</span></label>
+                <input type="text" id="username" placeholder="admin" class="input input-bordered w-full" />
+            </div>
+            <div class="form-control w-full mb-6">
+                <label class="label"><span class="label-text">Password</span></label>
+                <input type="password" id="password" placeholder="123456" class="input input-bordered w-full" />
+            </div>
+            
+            <button id="login-btn" class="btn btn-primary w-full mb-4">Sign In</button>
+            
+            <div class="bg-blue-50 p-3 rounded text-xs text-blue-700">
+                <strong>Demo Credential:</strong> admin / admin123
+            </div>
+        </div>
+    </div>
+
+    <div id="main-dashboard" class="hidden">
+        <nav class="navbar bg-base-100 shadow-sm px-4 md:px-12 border-b">
+            <div class="flex-1">
+                <a class="flex items-center gap-2 font-bold text-xl">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="w-8">
+                    <span>IssuesTracker</span>
+                </a>
+            </div>
+            <div class="flex-none gap-2">
+                <div class="join">
+                    <input type="text" id="search-input" placeholder="Search issues..." class="input input-bordered join-item w-24 md:w-auto" />
+                    <button id="search-btn" class="btn btn-primary join-item">Search</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container mx-auto p-4 md:p-8">
+            <div class="flex flex-col gap-6">
+                <div class="tabs tabs-boxed bg-transparent gap-2">
+                    <button class="tab tab-active px-6 filter-tab" data-status="all">All</button>
+                    <button class="tab px-6 filter-tab" data-status="open">Open</button>
+                    <button class="tab px-6 filter-tab" data-status="closed">Closed</button>
+                </div>
+
+                <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg border">
+                    <div class="flex items-center gap-2">
+                        <span id="issue-count" class="font-bold">0</span>
+                        <span class="text-gray-600">Issues found in this section</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="badge badge-success badge-outline">Open</span>
+                        <span class="badge badge-secondary badge-outline" style="color: purple; border-color: purple;">Closed</span>
+                    </div>
+                </div>
+
+                <div id="issues-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    </div>
+            </div>
+        </main>
+    </div>
+
+    <dialog id="issue_modal" class="modal">
+        <div class="modal-box w-11/22 max-w-2xl">
+            <h3 id="modal-title" class="font-bold text-xl mb-2"></h3>
+            <div id="modal-content" class="space-y-4">
+                </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
