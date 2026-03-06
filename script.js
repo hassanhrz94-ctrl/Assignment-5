@@ -97,3 +97,28 @@ searchBtn.addEventListener('click', async () => {
         console.error("Search failed:", error);
     }
 });
+
+// 6. Modal / Details View
+async function showDetails(id) {
+    try {
+        const response = await fetch(`${API_BASE}/issue/${id}`);
+        const data = await response.json();
+        const issue = data.data;
+
+        document.getElementById('modal-title').innerText = issue.title;
+        document.getElementById('modal-content').innerHTML = `
+            <p class="text-gray-700">${issue.description}</p>
+            <div class="grid grid-cols-2 gap-4 text-sm mt-4 p-4 bg-gray-50 rounded">
+                <p><strong>Status:</strong> ${issue.status}</p>
+                <p><strong>Category:</strong> ${issue.category}</p>
+                <p><strong>Priority:</strong> ${issue.priority}</p>
+                <p><strong>Label:</strong> ${issue.label}</p>
+                <p><strong>Author:</strong> ${issue.author}</p>
+                <p><strong>Created:</strong> ${new Date(issue.createdAt).toLocaleString()}</p>
+            </div>
+        `;
+        document.getElementById('issue_modal').showModal();
+    } catch (error) {
+        console.error("Error loading details:", error);
+    }
+}
