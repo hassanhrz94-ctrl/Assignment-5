@@ -83,3 +83,17 @@ tabs.forEach(tab => {
         }
     });
 });
+
+// 5. Search Functionality
+searchBtn.addEventListener('click', async () => {
+    const query = searchInput.value;
+    if (!query) return renderIssues(allIssues);
+
+    try {
+        const response = await fetch(`${API_BASE}/issues/search?q=${query}`);
+        const data = await response.json();
+        renderIssues(data.data);
+    } catch (error) {
+        console.error("Search failed:", error);
+    }
+});
